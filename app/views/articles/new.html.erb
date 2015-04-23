@@ -1,4 +1,16 @@
 <h1>New Blogpost</h1>
+<% if @article.errors.any? %>
+	<div id="error_explanation">
+		<h2><%= pluralize(@article.errors.count, "error") %>
+			found :
+		</h2>
+		<ul>
+			<% @article.errors.full_messages.each do |msg| %>
+				<li><%= msg %></li>
+			<% end %>
+		</ul>
+	</div>
+<% end %>
 <%= form_for :article, url: articles_path do |f| %>
 	<p>
 		<%= f.label :title %>
@@ -12,3 +24,4 @@
 		<%= f.submit %>
 	</p>
 <% end %>
+<%= link_to 'Back', articles_path %>
